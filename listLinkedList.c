@@ -22,9 +22,8 @@ typedef struct node {
 } Node;
 
 typedef struct listImpl {
-	PtNode header;
-	PtNode trailer;
-	unsigned int size; 
+	PtNode header, trailer;
+	int size;
 } ListImpl;
 
 
@@ -48,28 +47,13 @@ static PtNode nodeAtRank(PtList list, int rank) {
 
 PtList listCreate() {
 		
-	PtList newList = (PtList)malloc(sizeof(ListImpl));
-	if (newList == NULL) return NULL;
+	// TODO
 
-	newList->header = (PtNode)malloc(sizeof(Node));
-	newList->trailer = (PtNode)malloc(sizeof(Node));
-
-	newList->header->prev = NULL;
-	newList->header->next = newList->trailer;
-
-	newList->trailer->prev = newList->header;
-	newList->trailer->next = NULL;
-
-	newList->size = 0;
-
-	return newList;
+	return NULL;
 }
 
 int listDestroy(PtList *ptList) {
-	PtList list = *ptList;
-	if (list == NULL) return LIST_NULL;
-
-	/* TODO: free existing nodes and allocated structure */
+	// TODO
 
 	*ptList = NULL;
 
@@ -78,37 +62,36 @@ int listDestroy(PtList *ptList) {
 
 int listAdd(PtList list, int rank, ListElem elem) {
 	if (list == NULL) return LIST_NULL;
-	if (rank < 0 || rank > list->size) return LIST_INVALID_RANK;
+	// TODO validate ranks
 
-	/* TODO: implementation */
+	// TODO
 
 	return LIST_OK;
 }
 
 int listRemove(PtList list, int rank, ListElem *ptElem) {
 	if (list == NULL) return LIST_NULL;
-	if (list->size == 0) return LIST_EMPTY;
-	if (rank < 0 || rank > list->size - 1) return LIST_INVALID_RANK;
+	// TODO validate empty and validate ranks
 
-	/* TODO: implementation */
+	// TODO
 
 	return LIST_OK;
 }
 
 int listGet(PtList list, int rank, ListElem *ptElem) {
 	if (list == NULL) return LIST_NULL;
-	if (rank < 0 || rank > list->size - 1) return LIST_INVALID_RANK;
+	// TODO validate empty and validate ranks
 
-	/* TODO: implementation */
+	// TODO
 
 	return LIST_OK;
 }
 
 int listSet(PtList list, int rank, ListElem elem, ListElem *ptOldElem) {
 	if (list == NULL) return LIST_NULL;
-	if (rank < 0 || rank > list->size - 1) return LIST_INVALID_RANK;
+	// TODO validate empty and validate ranks
 
-	/* TODO: implementation */
+	// TODO
 
 	return LIST_OK;
 }
@@ -116,7 +99,7 @@ int listSet(PtList list, int rank, ListElem elem, ListElem *ptOldElem) {
 int listSize(PtList list, int *ptSize) {
 	if (list == NULL) return LIST_NULL;
 
-	*ptSize = list->size;
+	// TODO
 
 	return LIST_OK;
 }
@@ -124,13 +107,13 @@ int listSize(PtList list, int *ptSize) {
 bool listIsEmpty(PtList list) {
 	if (list == NULL) return 1;
 
-	return (list->size == 0);
+	return (true /* TODO */);
 }
 
 int listClear(PtList list) {
 	if (list == NULL) return LIST_NULL;
 
-	/* TODO: implementation */
+	// TODO
 
 	return LIST_OK;
 }
@@ -139,21 +122,12 @@ void listPrint(PtList list) {
 	if (list == NULL) {
 		printf("(LIST NULL)\n");
 	}
-	else if (list->size == 0) {
+	else if (listIsEmpty(list)) {
 		printf("(LIST EMPTY)\n");
 	}
 	else {
-		int rank = 0;
-		PtNode current = list->header->next;
-		while (current != list->trailer) {
-
-			printf("Rank %d: ", rank);
-			listElemPrint(current->element);
-			printf("\n");
-			
-			rank++;
-			current = current->next;
-		}
+		printf("List contents (by rank): \n");
+		// TODO
 	}
 	printf("\n");
 }
